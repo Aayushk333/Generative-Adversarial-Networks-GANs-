@@ -28,6 +28,8 @@ So, once we have defined a way to compare two distributions based on samples, we
 * compare the true “dog probability distribution” and the generated one based on the available samples (for example compute the MMD distance between the sample of true dog images and the sample of generated ones)
 * use backpropagation to make one step of gradient descent to lower the distance (for example MMD) between true and generated distributions
 
+ <img src="direct_method.png" style="width:800px;height:300px;">
+ 
 __When following these steps we are applying a gradient descent over the network with a loss function that is the distance between the true and the generated distributions at the current iteration.__
 
 
