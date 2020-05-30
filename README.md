@@ -12,6 +12,8 @@ Suppose that we are interested in generating black and white square images of do
 
 __Then, the problem of generating a new image of dog is equivalent to the problem of generating a new vector following the “dog probability distribution” over the N dimensional vector space. So we are, in fact, facing a problem of generating a random variable with respect to a specific probability distribution.__
 
+ <img src="illustration.png" style="width:800px;height:300px;">
+ 
 ## Generative Matching Networks
 
 So our problem of generating a new image of dog can be rephrased into a problem of generating a random vector in the N dimensional vector space that follows the “dog probability distribution” and we have suggested to use a transform method, with a neural network to model the transform function. 
