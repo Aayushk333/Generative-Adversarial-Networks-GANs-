@@ -49,5 +49,16 @@ We assume for now that this discriminator is a kind of oracle that knows exactly
  
 At this point, it seems legit to wonder whether this indirect method is really a good idea. Indeed, it seems to be more complicated (we have to optimise the generator based on a downstream task instead of directly based on the distributions) and it requires a discriminator that we consider here as a given oracle but that is, in reality, neither known nor perfect. For the first point, the difficulty of directly comparing two probability distributions based on samples counterbalances the apparent higher complexity of indirect method. For the second point, it is obvious that the discriminator is not known. However, it can be learned! 
 
+### The approximation: adversarial neural networks
+
+Let’s now describe the specific form that take the generator and the discriminator in the GANs architecture. The generator is a neural network that models a transform function. It takes as input a simple random variable and must return, once trained, a random variable that follows the targeted distribution. As it is very complicated and unknown, we decide to model the discriminator with another neural network. This neural network models a discriminative function. It takes as input a point (in our dog example a N dimensional vector) and returns as output the probability of this point to be a “true” one.
+Once defined, the two networks can then be trained jointly (at the same time) with opposite goals :
+
+* the goal of the generator is to fool the discriminator, so the generative neural network is trained to maximise the final classification error (between true and generated data).
+* the goal of the discriminator is to detect fake generated data, so the discriminative neural network is trained to minimise the final classification error.
+
+__So, at each iteration of the training process, the weights of the generative network are updated in order to increase the classification error (error gradient ascent over the generator’s parameters) whereas the weights of the discriminative network are updated so that to decrease this error (error gradient descent over the discriminator’s parameters).__
+
+_These opposite goals and the implied notion of adversarial training of the two networks explains the name of “adversarial networks”: both networks try to beat each other and, doing so, they are both becoming better and better. The competition between them makes these two networks “progress” with respect to their respective goals._
 
 
