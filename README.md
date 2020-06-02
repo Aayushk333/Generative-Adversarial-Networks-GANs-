@@ -64,3 +64,12 @@ __So, at each iteration of the training process, the weights of the generative n
 _These opposite goals and the implied notion of adversarial training of the two networks explains the name of “adversarial networks”: both networks try to beat each other and, doing so, they are both becoming better and better. The competition between them makes these two networks “progress” with respect to their respective goals.From a game theory point of view, we can think of this setting as a **minimax two-players game** where the equilibrium state corresponds to the situation where the generator produces data from the exact targeted distribution and where the discriminator predicts “true” or “generated” with probability 1/2 for any point it receives._
 
 
+## Training difficulties
+
+GANs are notoriously difficult to train. __Without the right hyperparameters, network architecture, and training procedure, the discriminator can overpower the generator, or vice-versa.__
+
+* In one common failure mode, _the discriminator overpowers the generator_, classifying generated images as fake with absolute certainty. When the discriminator responds with absolute certainty, it leaves no gradient for the generator to descend. This is partly why we built our discriminator to produce unscaled output rather than passing its output through a sigmoid function that would push its evaluation toward either 0 or 1.
+
+* In another common failure mode, known as mode collapse, _the generator discovers and exploits some weakness in the discriminator_. You can recognize mode collapse in your GAN if it generates many very similar images regardless of variation in the generator input z. Mode collapse can sometimes be corrected by “strengthening” the discriminator in some way—for instance, by adjusting its training rate or by reconfiguring its layers.
+
+
